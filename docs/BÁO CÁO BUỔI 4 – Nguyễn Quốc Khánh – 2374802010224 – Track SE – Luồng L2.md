@@ -5,8 +5,8 @@ Track: SE
 Luồng: L2 – Tiếp nhận và phân loại yêu cầu bảo hành
 Case study: Smart CRM – Mekong Mobile
 1. Link commit cuối buổi
-Commit cuối:
-c0d4c0d – Chuyên đề tốt nghiệp 1
+Commit lần cuối:
+f2a17ed Chuyên đề tốt nghiệp 1
 Link:
 https://github.com/khanhvip606-ctrl/chuyen-de-tot-nghiep-1/commit/c0d4c0d
 Các file đã commit:

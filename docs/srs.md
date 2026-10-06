@@ -23,6 +23,18 @@ Trong quá trình phân tích, em xác định một số thực thể chính g�
 * `issue_category`: nhóm sự cố.
 * `ticket_status_log`: lịch sử thay đổi trạng thái của phiếu.
 
+### 1.4. Bảng thuật ngữ
+
+| Thuật ngữ | Giải thích |
+|---|---|
+| CRM | Customer Relationship Management – hệ thống quản lý quan hệ khách hàng |
+| Ticket | Phiếu/yêu cầu bảo hành được tạo khi khách hàng yêu cầu hỗ trợ |
+| Serial/IMEI | Mã định danh của thiết bị |
+| Issue Category | Nhóm sự cố dùng để phân loại yêu cầu bảo hành |
+| Priority | Mức độ ưu tiên xử lý yêu cầu bảo hành |
+| SLA | Thời hạn cam kết xử lý yêu cầu |
+| GWT | Given – When – Then, dùng để mô tả tiêu chí chấp nhận |
+| MoSCoW | Phương pháp phân loại mức độ ưu tiên yêu cầu: MUST, SHOULD, COULD, WON'T |
 ---
 
 ## 2. User Story

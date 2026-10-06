@@ -19,7 +19,7 @@ Các file đã commit:
 •	docs/usecase.drawio
 Trạng thái Git: working tree clean.
 2. User Story
-8 User Story | 7 MUST | 1 SHOULD | 25 tiêu chí GWT
+3 MUST / 3 SHOULD / 2 COULD / 25 tiêu chí GWT
 Các User Story tập trung vào:
 •	Tra cứu khách hàng.
 •	Tạo hồ sơ khách hàng.

@@ -63,9 +63,10 @@ API Contract đã được hoàn thiện trong file docs/api-contract.md, gồm 
 •	Tra cứu thiết bị.
 •	Tạo phiếu bảo hành.
 6. Giờ thực tế xong
-- User Story: Đã hoàn thành.  3/10/2026 9h35p – 6/10/2026 16h30p
-- Use Case: Đã hoàn thành. .  3/10/2026 9h35p – 6/10/2026 10h30p
-- SRS + API Contract + sơ đồ: Đã hoàn thành. .  3/10/2026 9h35p – 6/10/2026 13h30p
+- User Story: Đã hoàn thành.  		            	3/10/2026 9h35p – 6/10/2026 16h30p
+- Use Case: Đã hoàn thành.  			              3/10/2026 9h35p – 6/10/2026 10h30p
+- SRS + API Contract + sơ đồ: Đã hoàn thành.  	3/10/2026 9h35p – 6/10/2026 13h30p
+
 7. Checklist đạt
 Đạt các yêu cầu chính của Buổi 4.
 Các sản phẩm đã hoàn thành:

@@ -82,7 +82,7 @@ Các sản phẩm đã hoàn thành:
 •	Business Flow.
 •	Git commit.
 8. Peer review
-Peer review với: Huỳnh Minh Trí
+Peer review với: Nguyễn Văn Vinh
 Track: SE
 Tóm tắt phạm vi: Đã nhờ bạn review phạm vi L2 – Tiếp nhận và phân loại yêu cầu bảo hành, tập trung vào User Story, Use Case Diagram, Business Flow và SRS.
 Góp ý sẽ sửa: Rà soát lại sự liên kết giữa User Story, Use Case và Business Flow; kiểm tra các luồng ngoại lệ trong Use Case và bảo đảm các yêu cầu trong SRS được truy vết đầy đủ.

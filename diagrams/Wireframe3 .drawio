@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36">
+  <diagram id="f1b7ffb7-ca1e-a977-7cf5-a751b3c06c05" name="Page-1">
+    <mxGraphModel dx="2627" dy="1242" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" style=";html=1;" />
+        <mxCell id="1" parent="0" style=";html=1;" />
+        <mxCell id="lk-hdr" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#222222;strokeColor=none;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#000000;align=center;" value="" vertex="1">
+          <mxGeometry height="40" width="1150" x="40" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-m1" parent="lk-hdr" style="html=1;shadow=0;dashed=0;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" value="Trang chủ" vertex="1">
+          <mxGeometry height="40" width="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-m2" parent="lk-hdr" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;fontSize=14;whiteSpace=wrap;" value="Tiếp nhận bảo hành" vertex="1">
+          <mxGeometry height="40" width="160" x="100" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-m3" parent="lk-hdr" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=#000000;strokeColor=none;fontColor=#ffffff;spacingRight=30;whiteSpace=wrap;" value="Tra cứu bảo hành" vertex="1">
+          <mxGeometry height="40" width="160" x="260" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-m4" parent="lk-hdr" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;whiteSpace=wrap;" value="Báo cáo" vertex="1">
+          <mxGeometry height="40" width="100" x="420" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-m5" parent="lk-hdr" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;fillColor=none;strokeColor=none;shape=mxgraph.bootstrap.rect;fontColor=#999999;whiteSpace=wrap;" value="Hệ thống" vertex="1">
+          <mxGeometry height="40" width="100" x="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-box" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#dddddd;rounded=0;fontSize=12;align=center;fillColor=#ffffff;" value="" vertex="1">
+          <mxGeometry height="120" width="1150" x="40" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-title" parent="lk-box" style="shape=rect;fontSize=16;fillColor=#f0f0f0;strokeColor=none;fontColor=#333333;whiteSpace=wrap;fontStyle=1" value="TRA CỨU TIẾN ĐỘ SỬA CHỮA &amp; BẢO HÀNH" vertex="1">
+          <mxGeometry height="35" width="1140" x="5" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-input-lbl" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;strokeColor=none;fillColor=none;fontColor=#666666;align=left;fontSize=12;whiteSpace=wrap;rounded=0;" value="Nhập mã phiếu (ticket_code) hoặc số điện thoại khách hàng:" vertex="1">
+          <mxGeometry height="20" width="400" x="60" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-input" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=4;strokeColor=#999999;align=left;spacingLeft=10;fontSize=14;fontColor=#333333;whiteSpace=wrap;rounded=0;" value="TC-2026-00192" vertex="1">
+          <mxGeometry height="40" width="650" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-btn" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;align=center;rSize=5;strokeColor=none;fillColor=#3D8BCD;fontColor=#ffffff;fontSize=14;whiteSpace=wrap;rounded=0;fontStyle=1" value="Tra cứu ngay" vertex="1">
+          <mxGeometry height="40" width="150" x="730" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-res-box" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;strokeColor=#dddddd;rounded=0;fontSize=12;align=center;" value="" vertex="1">
+          <mxGeometry height="450" width="1150" x="40" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-res-title" parent="lk-res-box" style="shape=rect;fontSize=16;fillColor=#e9ecef;strokeColor=none;fontColor=#333333;whiteSpace=wrap;fontStyle=1" value="THÔNG TIN CHI TIẾT PHIẾU &amp; NHẬT KÝ TRẠNG THÁI (STATUS LOG - Dữ liệu minh họa)" vertex="1">
+          <mxGeometry height="35" width="1140" x="5" y="5" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-info-1" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;strokeColor=none;fillColor=none;fontColor=#333333;align=left;fontSize=13;whiteSpace=wrap;rounded=0;" value="• Mã phiếu: TC-2026-00192 | Khách hàng: Nguyễn Văn A | Thiết bị: iPhone 15 Pro Max" vertex="1">
+          <mxGeometry height="25" width="700" x="60" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-info-2" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;strokeColor=none;fillColor=none;fontColor=#333333;align=left;fontSize=13;whiteSpace=wrap;rounded=0;" value="• Kỹ thuật viên phụ trách: Trần Văn Kỹ Thuật | Mức độ ưu tiên: CAO | Trạng thái hiện tại: Chờ linh kiện" vertex="1">
+          <mxGeometry height="25" width="750" x="60" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-table-hdr" parent="1" style="shape=rect;fontSize=12;fillColor=#f8f9fa;strokeColor=#cccccc;fontColor=#333333;whiteSpace=wrap;fontStyle=1;align=left;spacingLeft=10;" value=" Thời điểm thay đổi       | Trạng thái cũ ➔ Trạng thái mới             | Người thực hiện (changed_by) / Ghi chú" vertex="1">
+          <mxGeometry height="30" width="1110" x="60" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-row-1" parent="1" style="shape=rect;fontSize=12;fillColor=#ffffff;strokeColor=#eeeeee;fontColor=#333333;whiteSpace=wrap;align=left;spacingLeft=10;" value=" 10/10/2026 09:30         | [Khởi tạo] ➔ Mới tiếp nhận                | Nguyễn Văn An (Nhân viên tiếp nhận)" vertex="1">
+          <mxGeometry height="35" width="1110" x="60" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-row-2" parent="1" style="shape=rect;fontSize=12;fillColor=#f9f9f9;strokeColor=#eeeeee;fontColor=#333333;whiteSpace=wrap;align=left;spacingLeft=10;" value=" 10/10/2026 10:15         | Mới tiếp nhận ➔ Đang xử lý                | Trần Văn Kỹ Thuật (KTV phần cứng)" vertex="1">
+          <mxGeometry height="35" width="1110" x="60" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-row-3" parent="1" style="shape=rect;fontSize=12;fillColor=#ffffff;strokeColor=#eeeeee;fontColor=#333333;whiteSpace=wrap;align=left;spacingLeft=10;" value=" 10/10/2026 13:00         | Đang xử lý ➔ Chờ linh kiện               | Trần Văn Kỹ Thuật (Đợi nhập màn hình OLED)" vertex="1">
+          <mxGeometry height="35" width="1110" x="60" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-note" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rect;strokeColor=none;fillColor=none;fontColor=#666666;align=left;fontSize=12;whiteSpace=wrap;rounded=0;" value="Lưu ý: Mọi thay đổi về trạng thái thiết bị đều được ghi nhận tự động vào bảng nhật ký (ticket_status_log) nhằm hỗ trợ theo dõi lịch sử thay đổi trạng thái trong dịch vụ bảo hành tại Mekong Mobile." vertex="1">
+          <mxGeometry height="40" width="1110" x="60" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="lk-btn-back" parent="1" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;align=center;rSize=5;strokeColor=#dddddd;fontSize=14;whiteSpace=wrap;rounded=0;fillColor=#f8f9fa" value="Quay lại tra cứu" vertex="1">
+          <mxGeometry height="40" width="180" x="60" y="630" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,130 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36">
+  <diagram id="03018318-947c-dd8e-b7a3-06fadd420f32" name="Page-1">
+    <mxGraphModel dx="1911" dy="903" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeColor=#000000;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;fontColor=#000000;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="810" width="1060" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=28;align=center;comic=1;" value="MEKONG MOBILE" vertex="1">
+          <mxGeometry height="65" width="240" x="50" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.searchBox;strokeColor=#999999;mainText=;strokeColor2=#008cff;fontColor=#666666;fontSize=17;align=left;spacingLeft=3;rounded=0;labelBackgroundColor=none;comic=1;" value="Tìm kiếm phiếu, thiết bị..." vertex="1">
+          <mxGeometry height="30" width="220" x="840" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Trang chủ" vertex="1">
+          <mxGeometry height="20" width="80" x="760" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Tra cứu" vertex="1">
+          <mxGeometry height="20" width="70" x="845" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Dịch vụ" vertex="1">
+          <mxGeometry height="20" width="70" x="920" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Hỗ trợ" vertex="1">
+          <mxGeometry height="20" width="60" x="1000" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="590" width="200" x="30" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="line;strokeWidth=1;html=1;rounded=0;shadow=0;labelBackgroundColor=none;fillColor=none;fontFamily=Verdana;fontSize=14;fontColor=#000000;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="10" width="1060" x="20" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="50" width="1040" x="30" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Tổng quan hệ thống" vertex="1">
+          <mxGeometry height="20" width="150" x="60" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Quản lý Khách hàng" vertex="1">
+          <mxGeometry height="20" width="160" x="240" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Quản lý Thiết bị" vertex="1">
+          <mxGeometry height="20" width="150" x="420" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Phiếu sửa chữa (Ticket)" vertex="1">
+          <mxGeometry height="20" width="180" x="600" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;align=center;verticalAlign=top;spacing=10;comic=1;" value="&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Hệ thống tiếp nhận bảo hành và sửa chữa điện thoại di động Mekong Mobile. Quản lý toàn bộ thông tin khách hàng, thiết bị gửi sửa, phân công kỹ thuật viên xử lý và theo dõi sát sao lịch sử trạng thái phiếu sửa chữa một cách minh bạch và nhanh chóng.&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify&quot;&gt;&lt;span&gt;Cung cấp công cụ tra cứu tiến độ sửa chữa trực tuyến, cập nhật trạng thái liên tục giúp tối ưu hóa quy trình dịch vụ tại cửa hàng.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="580" x="250" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.mockup.graphics.simpleIcon;strokeColor=#999999;rounded=0;labelBackgroundColor=none;fontFamily=Verdana;fontSize=14;fontColor=#000000;comic=1;" value="Banner / Slide quảng cáo dịch vụ sửa chữa" vertex="1">
+          <mxGeometry height="400" width="580" x="250" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="400" width="230" x="840" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;align=center;comic=1;" value="" vertex="1">
+          <mxGeometry height="180" width="230" x="840" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Dashboard / Tổng quan" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="1. Quản lý Khách hàng" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="286" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="2. Danh sách Thiết bị" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="321" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="3. Tạo Phiếu sửa mới" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="357" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="6. Lịch sử trạng thái" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="464" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="7. Danh sách Kỹ thuật viên" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="8. Phân công công việc" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="536" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="9. Cập nhật trạng thái" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="571" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="10. Thống kê doanh thu" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="607" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="11. Báo cáo lỗi thiết bị" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="643" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="12. Tra cứu bảo hành" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="679" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="13. Cài đặt hệ thống" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="714" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="4. Danh sách Phiếu sửa" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="393" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="5. Chi tiết Phiếu sửa" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="429" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="14. Đăng xuất / Thoát" vertex="1">
+          <mxGeometry height="20" width="170" x="40" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Liên kết nhanh" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="653" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Tra cứu nhanh mã phiếu" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Phiếu đang chờ xử lý" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Thiết bị mới tiếp nhận" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Kỹ thuật viên trực ca" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="1" style="text;html=1;points=;align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Lịch sử sửa chữa gần đây" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" value="Thống kê trạng thái" vertex="1">
+          <mxGeometry height="20" width="170" x="860" y="425" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

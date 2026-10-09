@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Trang-1" id="LS1MzqLf-8x1wKH8SKxI">
+    <mxGraphModel dx="2174" dy="1028" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-7" edge="1" parent="1" source="z8hIBsa8NC76nTUYeGBn-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="z8hIBsa8NC76nTUYeGBn-8">
+          <mxGeometry relative="1" x="-0.2593" as="geometry">
+            <mxPoint x="515.6551724137935" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2CC8F;strokeColor=#E07A5F;labelBackgroundColor=none;fontColor=#393C56;" value="&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text PDq2pG_selectionAnchorContainer&quot; style=&quot;text-align: left;&quot;&gt;&lt;span class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;Presentation Layer&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;PDq2pG_selectionAnchor&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text&quot; style=&quot;text-align: left;&quot;&gt;Giao diện Web&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="215" x="445" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-14" edge="1" parent="1" source="z8hIBsa8NC76nTUYeGBn-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;" target="z8hIBsa8NC76nTUYeGBn-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;labelBackgroundColor=none;" value="&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text PDq2pG_selectionAnchorContainer&quot;&gt;&lt;span class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;Controller &lt;/span&gt;&lt;span&gt;Layer&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;PDq2pG_selectionAnchor&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;TicketController&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="215" x="445" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-15" edge="1" parent="1" source="z8hIBsa8NC76nTUYeGBn-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;" target="z8hIBsa8NC76nTUYeGBn-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;labelBackgroundColor=none;" value="&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text PDq2pG_selectionAnchorContainer&quot;&gt;&lt;span class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;Service &lt;/span&gt;&lt;span&gt;Layer&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;PDq2pG_selectionAnchor&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;TicketService &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;Nghiệp &lt;/span&gt;&lt;span&gt;vụ &lt;/span&gt;&lt;span&gt;tiếp &lt;/span&gt;&lt;span&gt;nhận &lt;/span&gt;&lt;span&gt;và &lt;/span&gt;&lt;span&gt;phân &lt;/span&gt;&lt;span&gt;loại&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="215" x="445" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-16" edge="1" parent="1" source="z8hIBsa8NC76nTUYeGBn-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#E07A5F;fontColor=#393C56;fillColor=#F2CC8F;" target="z8hIBsa8NC76nTUYeGBn-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;labelBackgroundColor=none;" value="&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text PDq2pG_selectionAnchorContainer&quot;&gt;&lt;span class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;Repository &lt;/span&gt;&lt;span&gt;Layer&lt;/span&gt;&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;PDq2pG_selectionAnchor&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;TicketRepository &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;CustomerRepository &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;DeviceRepository&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="70" width="215" x="445" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="z8hIBsa8NC76nTUYeGBn-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;labelBackgroundColor=none;" value="&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text PDq2pG_selectionAnchorContainer&quot;&gt;&lt;span class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;Database&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot; class=&quot;PDq2pG_selectionAnchor&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;w6asjq_TextBase _85PZeG_Text&quot;&gt;&lt;span&gt;Customer &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;Device &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;Ticket &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;Technician &lt;/span&gt;&lt;span&gt;· &lt;/span&gt;&lt;span&gt;TicketStatusLog&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="60" width="215" x="445" y="620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

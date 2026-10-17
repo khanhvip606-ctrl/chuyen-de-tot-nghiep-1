@@ -20,93 +20,153 @@
 
 
 
-\## TD-01 – Hoàn thiện đặc tả Use Case
+
+
+\# Ghi nhận thay đổi thiết kế – Smart CRM Mekong Mobile
 
 
 
-\- \*\*Phản hồi:\*\* Đặc tả Use Case cần thể hiện rõ tác nhân, điều kiện trước, điều kiện sau, luồng chính và các trường hợp ngoại lệ.
-
-\- \*\*Quyết định:\*\* SỬA.
-
-\- \*\*Lý do:\*\* Đặc tả chưa đầy đủ sẽ gây khó khăn khi triển khai chức năng và xác định tiêu chí kiểm thử.
-
-\- \*\*Ảnh hưởng:\*\* Rà soát và hoàn thiện UC01–UC08, bảo đảm các bước nghiệp vụ phù hợp với luồng L2 và các yêu cầu chức năng tương ứng.
+\## 1. Phạm vi triển khai
 
 
 
-\## TD-02 – Làm rõ mức độ ưu tiên yêu cầu
+Trong Buổi 08, em tiếp tục triển khai luồng L2: tiếp nhận và phân loại yêu cầu bảo hành trong hệ thống Smart CRM Mekong Mobile.
 
 
 
-\- \*\*Phản hồi:\*\* Phân loại mức độ ưu tiên cần nhất quán với phạm vi chức năng và kế hoạch triển khai.
-
-\- \*\*Quyết định:\*\* SỬA.
-
-\- \*\*Lý do:\*\* Phân loại MoSCoW giúp xác định chức năng bắt buộc, chức năng nên có và chức năng chưa triển khai.
-
-\- \*\*Ảnh hưởng:\*\* Rà soát mức ưu tiên của User Story và yêu cầu chức năng; điều chỉnh UC07 sang MUST theo thiết kế đã thống nhất và bổ sung phạm vi WON’T.
+Phạm vi tập trung vào quản lý thông tin khách hàng, thiết bị, phiếu bảo hành, mức độ ưu tiên và lịch sử trạng thái của phiếu.
 
 
 
-\## TD-03 – Bổ sung khả năng kiểm chứng NFR
+\## 2. Các quyết định thiết kế
 
 
 
-\- \*\*Phản hồi:\*\* Yêu cầu phi chức năng cần có tiêu chí đo lường hoặc kiểm thử cụ thể.
-
-\- \*\*Quyết định:\*\* SỬA.
-
-\- \*\*Lý do:\*\* Các phát biểu chung chung khó xác định hệ thống có đáp ứng yêu cầu hay không.
-
-\- \*\*Ảnh hưởng:\*\* Cụ thể hóa NFR04 bằng tiêu chí kiểm thử 1.000 phiếu yêu cầu không trùng mã; rà soát các NFR còn lại và liên kết chúng với phương án kiểm thử.
+\### 2.1. Tổ chức mã nguồn
 
 
 
-\## TD-04 – Đồng bộ mô hình dữ liệu và DDL
+Em giữ kiến trúc ba lớp gồm Routes, Services và Repositories.
 
 
 
-\- \*\*Phản hồi:\*\* Sơ đồ dữ liệu và câu lệnh tạo bảng phải nhất quán với nghiệp vụ và các tài liệu thiết kế.
+\- Routes tiếp nhận HTTP request và trả về HTTP response.
 
-\- \*\*Quyết định:\*\* SỬA.
+\- Services kiểm tra dữ liệu và xử lý quy tắc nghiệp vụ.
 
-\- \*\*Lý do:\*\* Sự không nhất quán giữa ERD, DDL và API Contract có thể gây lỗi khi triển khai cơ sở dữ liệu.
-
-\- \*\*Ảnh hưởng:\*\* Rà soát ERD và database.sql theo mô hình 5 bảng đã thống nhất; thông tin nhóm sự cố được lưu trong phiếu yêu cầu theo thiết kế đã chọn.
+\- Repositories thực hiện truy vấn và cập nhật SQLite.
 
 
 
-\## TD-05 – Tăng tính truy vết giữa các tài liệu
+Cách tổ chức này giúp tách biệt xử lý HTTP, nghiệp vụ và truy cập dữ liệu.
 
 
 
-\- \*\*Phản hồi:\*\* Cần bảo đảm yêu cầu, Use Case, thiết kế dữ liệu và tiêu chí kiểm thử có thể đối chiếu với nhau.
-
-\- \*\*Quyết định:\*\* SỬA.
-
-\- \*\*Lý do:\*\* Truy vết giúp hạn chế bỏ sót yêu cầu và hỗ trợ kiểm thử trong các sprint tiếp theo.
-
-\- \*\*Ảnh hưởng:\*\* Rà soát liên kết giữa User Story, FR, UC, NFR, API Contract và mô hình dữ liệu; điều chỉnh nội dung tài liệu để thống nhất thuật ngữ và phạm vi L2.
+\### 2.2. Cấu trúc cơ sở dữ liệu
 
 
 
-\---
+Cơ sở dữ liệu SQLite hiện sử dụng các bảng customer, device, technician, ticket và ticket\_status\_log.
 
 
 
-\## Nguyên tắc áp dụng trong Sprint 1
+Các bảng có khóa chính; các quan hệ cần thiết sử dụng khóa ngoại. Số điện thoại khách hàng và mã phiếu bảo hành được ràng buộc duy nhất.
 
 
 
-Sprint 1 ưu tiên hiện thực module cốt lõi phục vụ tiếp nhận và phân loại yêu cầu bảo hành. Thiết kế tiếp tục tuân theo kiến trúc phân lớp đã chọn và phạm vi BT1.
+Các câu lệnh tạo bảng và chỉ mục sử dụng IF NOT EXISTS để hỗ trợ chạy migration nhiều lần.
 
 
 
-Các chức năng quản lý kho, sửa chữa chi tiết, khảo sát hài lòng và thanh toán không thuộc phạm vi hiện thực của luồng L2 trong giai đoạn này.
+\### 2.3. Khởi tạo và dữ liệu mẫu
 
 
 
-Các thay đổi tiếp theo phải được đối chiếu với SRS, API Contract, database.sql và sơ đồ kiến trúc trước khi triển khai.
+Em bổ sung lệnh npm run migrate để khởi tạo cơ sở dữ liệu và lệnh npm run seed để tạo dữ liệu mẫu.
+
+
+
+Dữ liệu mẫu sử dụng các khóa duy nhất và INSERT OR IGNORE tại các vị trí phù hợp để hạn chế bản ghi trùng khi chạy lại.
+
+
+
+\### 2.4. Xử lý phiếu bảo hành
+
+
+
+Em bổ sung API cập nhật trạng thái phiếu bảo hành và API xem lịch sử trạng thái.
+
+
+
+Khi cập nhật trạng thái, hệ thống lưu trạng thái cũ, trạng thái mới, ghi chú và người thực hiện vào bảng ticket\_status\_log trong cùng transaction với thao tác cập nhật phiếu.
+
+
+
+\## 3. Kết quả kiểm thử
+
+
+
+Các kết quả đã kiểm tra tại môi trường phát triển:
+
+
+
+\- Migration chạy lại thành công.
+
+\- Seed chạy lần thứ hai không làm tăng số bản ghi.
+
+\- API xem danh sách khách hàng, thiết bị và phiếu bảo hành trả về dữ liệu.
+
+\- API tạo phiếu hợp lệ trả về HTTP 201.
+
+\- Dữ liệu có mức ưu tiên không hợp lệ bị từ chối với HTTP 400.
+
+\- Thiết bị không thuộc khách hàng đã chọn bị từ chối với HTTP 400.
+
+\- Mô tả lỗi để trống bị từ chối với HTTP 400.
+
+\- API cập nhật trạng thái và xem lịch sử trả về HTTP 200.
+
+\- Unit test hiện có: 2 PASS, 0 FAIL.
+
+
+
+\## 4. Những nội dung cần hoàn thiện
+
+
+
+\### 4.1. Quy tắc tính SLA
+
+
+
+Hiện tại, thời hạn SLA được tính bằng cách cộng 24, 72 hoặc 120 giờ liên tục tùy theo mức ưu tiên.
+
+
+
+Cách tính này chưa đáp ứng đầy đủ quy tắc tính theo ngày làm việc từ thứ Hai đến thứ Bảy. Cần hoàn thiện và kiểm thử quy tắc này trước khi xem nghiệp vụ SLA là hoàn thành.
+
+
+
+\### 4.2. Kiểm thử bổ sung
+
+
+
+Cần bổ sung unit test cho trường hợp tạo phiếu hợp lệ, cập nhật trạng thái, ghi lịch sử trạng thái và các trường hợp lỗi khác.
+
+
+
+Cần tiếp tục kiểm tra các API và đối chiếu kết quả với yêu cầu trong SRS.
+
+
+
+\## 5. Kết luận
+
+
+
+Buổi 08 đã hoàn thiện một phần nền tảng backend của luồng L2, bao gồm migration, seed dữ liệu, các API đọc và tạo phiếu, cùng chức năng cập nhật và theo dõi lịch sử trạng thái.
+
+
+
+Các nội dung chưa hoàn thiện được ghi nhận để tiếp tục thực hiện và kiểm thử ở các bước tiếp theo.
 
 
 

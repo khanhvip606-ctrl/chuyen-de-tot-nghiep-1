@@ -1,196 +1,135 @@
-\# Smart CRM – Mekong Mobile
+# Smart CRM – Mekong Mobile
 
+## 1. Mục tiêu
 
+Đề tài tập trung phân tích và từng bước triển khai **Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành** trong hệ thống Smart CRM của Mekong Mobile.
 
-\## 1. Mục tiêu
-
-
-
-Đề tài tập trung phân tích \*\*Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành\*\* trong hệ thống Smart CRM của Mekong Mobile.
-
-
-
-Mục tiêu của bài thực hành là phân tích yêu cầu nghiệp vụ và chuyển đổi thành các tài liệu đặc tả phần mềm gồm SRS, User Story, Use Case, Business Flow và API Contract.
-
-
+Mục tiêu là chuyển đổi yêu cầu nghiệp vụ thành các tài liệu phân tích, thiết kế và mã nguồn có thể kiểm thử.
 
 Phạm vi chính gồm:
 
+- Tra cứu thông tin khách hàng.
+- Tạo hồ sơ khách hàng.
+- Ghi nhận thông tin thiết bị.
+- Kiểm tra tình trạng bảo hành.
+- Ghi nhận mô tả lỗi và nhóm sự cố.
+- Xác định mức độ ưu tiên.
+- Xác định hạn cam kết xử lý.
 
+## 2. Yêu cầu môi trường
 
-\* Tra cứu thông tin khách hàng.
+- Windows 10/11.
+- Node.js và npm.
+- Git.
+- Notepad hoặc Visual Studio Code.
+- draw.io Desktop hoặc draw.io trên trình duyệt để chỉnh sửa sơ đồ.
+- Postman hoặc công cụ tương đương để kiểm thử API.
 
-\* Tạo hồ sơ khách hàng.
+Các thư viện Node.js được khai báo trong `package.json`.
 
-\* Ghi nhận thông tin thiết bị.
+### Cài đặt và chạy dự án
 
-\* Kiểm tra tình trạng bảo hành.
+Cài đặt thư viện:
 
-\* Ghi nhận mô tả lỗi.
-
-\* Phân loại nhóm sự cố.
-
-\* Xác định mức độ ưu tiên.
-
-\* Xác định hạn cam kết xử lý.
-
-
-
-\## 2. Yêu cầu môi trường
-
-
-
-Repository chủ yếu chứa tài liệu phân tích và đặc tả yêu cầu, không yêu cầu triển khai backend hoặc frontend để thực hiện bài Buổi 04.
-
-
-
-Môi trường đề xuất:
-
-
-
-\* Windows 10/11.
-
-\* Git.
-
-\* draw.io Desktop hoặc draw.io trên trình duyệt để mở và chỉnh sửa file `.drawio`.
-
-\* Trình soạn thảo Markdown như Visual Studio Code hoặc Notepad.
-
-\* Không yêu cầu cơ sở dữ liệu hoặc server để kiểm tra các tài liệu phân tích.
-
-
-
-\## 3. Cấu trúc thư mục
-
-
-
-```text
-
-chuyên đề tốt nghiệp 1/
-
-├── diagrams/
-
-│   ├── business\_flow\_L2.drawio
-
-│   └── use\_case\_L2.drawio
-
-│
-
-├── docs/
-
-│   ├── ai-disclosure.md
-
-│   ├── api-contract.md
-
-│   ├── srs.md
-
-│   └── usecase.drawio
-
-│
-
-├── .env.example
-
-├── .gitignore
-
-└── README.md
-
+```bash
+npm install
 ```
 
+Khởi chạy ứng dụng:
 
+```bash
+npm start
+```
 
-\## 4. Tài liệu chính
+Chạy chế độ phát triển:
 
+```bash
+npm run dev
+```
 
+Chạy kiểm thử tự động:
 
-| Tài liệu                           | Nội dung                            |
+```bash
+npm test
+```
 
-| ---------------------------------- | ----------------------------------- |
+Ứng dụng mặc định sử dụng cổng 3000. Có thể cấu hình cổng thông qua biến môi trường `PORT`.
 
-| `docs/srs.md`                      | Software Requirements Specification |
+## 3. Cấu trúc thư mục
 
-| `docs/usecase.drawio`              | Use Case Diagram                    |
+```text
+chuyen-de-tot-nghiep-1/
+├── anhchungminh/
+├── data/
+├── diagrams/
+├── docs/
+│   ├── ai-disclosure.md
+│   ├── api-contract.md
+│   ├── database.sql
+│   ├── srs.md
+│   └── thay-doi-thiet-ke.md
+├── src/
+│   ├── app.js
+│   ├── database/
+│   ├── middlewares/
+│   ├── repositories/
+│   ├── routes/
+│   └── services/
+├── tests/
+│   └── ticketService.test.js
+├── .env.example
+├── .gitignore
+├── package.json
+├── package-lock.json
+└── README.md
+```
 
-| `docs/api-contract.md`             | API Contract cho Track SE           |
+Thư mục `data/` lưu cơ sở dữ liệu SQLite trên máy phát triển. File cơ sở dữ liệu và các file tạm không được đưa lên GitHub.
 
-| `docs/ai-disclosure.md`            | Công khai việc sử dụng AI           |
+## 4. Công nghệ sử dụng
 
-| `diagrams/business\_flow\_L2.drawio` | Business Flow của luồng L2          |
+- **Node.js:** môi trường thực thi JavaScript phía máy chủ.
+- **Express:** xây dựng REST API.
+- **SQLite:** lưu trữ dữ liệu quan hệ.
+- **better-sqlite3:** kết nối và thao tác với SQLite.
+- **Node.js Test Runner:** chạy unit test bằng `node:test` và `node:assert/strict`.
+- **Git/GitHub:** quản lý mã nguồn và lịch sử thay đổi.
 
-| `diagrams/use\_case\_L2.drawio`      | Use Case Diagram bản gốc            |
+## 5. Phạm vi nghiệp vụ
 
+Luồng L2 tập trung vào việc tiếp nhận và phân loại yêu cầu bảo hành.
 
+Các chức năng chính:
 
-\## 5. Luồng được phân tích
+- Tra cứu và tạo hồ sơ khách hàng.
+- Ghi nhận thiết bị và thông tin liên quan.
+- Kiểm tra dữ liệu đầu vào của yêu cầu bảo hành.
+- Ghi nhận mô tả lỗi và nhóm sự cố.
+- Phân loại mức độ ưu tiên.
+- Tính hạn xử lý theo mức độ ưu tiên.
 
+Các chức năng quản lý kho, sửa chữa chi tiết, khảo sát hài lòng và thanh toán không thuộc phạm vi triển khai chính của luồng L2 trong giai đoạn này.
 
+## 6. Trạng thái hiện tại – Buổi 08
 
-\*\*L2 – Tiếp nhận và phân loại yêu cầu bảo hành\*\*
+- Đã có cấu trúc backend gồm `routes/`, `services/` và `repositories/`.
+- Đã xây dựng các module xử lý khách hàng, thiết bị và yêu cầu bảo hành.
+- Đã bổ sung unit test cho nghiệp vụ tạo yêu cầu bảo hành.
+- Đã chạy `npm test` thành công với **2 test PASS, 0 test FAIL**.
+- Đã cập nhật `.gitignore` để loại trừ cơ sở dữ liệu SQLite và các file môi trường cục bộ.
+- Đã có file `.env.example` làm mẫu cấu hình.
+- Đã có tài liệu `docs/thay-doi-thiet-ke.md` ghi nhận các quyết định điều chỉnh thiết kế.
 
+Các công việc tiếp theo là tiếp tục kiểm tra migration và seed dữ liệu, hoàn thiện CRUD qua ba lớp, kiểm thử API bằng Postman hoặc curl, bổ sung ảnh minh chứng và cập nhật tài liệu theo kết quả triển khai thực tế.
 
+## 7. Tài liệu tham khảo trong repository
 
-Actor chính:
-
-
-
-\* Nhân viên tiếp nhận.
-
-\* Quản lý trung tâm.
-
-
-
-Các Use Case chính:
-
-
-
-\* UC01 – Tra cứu khách hàng.
-
-\* UC02 – Tạo hồ sơ khách hàng.
-
-\* UC03 – Ghi nhận thiết bị.
-
-\* UC04 – Kiểm tra tình trạng bảo hành.
-
-\* UC05 – Ghi nhận mô tả lỗi.
-
-\* UC06 – Phân loại nhóm sự cố.
-
-\* UC07 – Xác định mức ưu tiên.
-
-\* UC08 – Sinh hạn cam kết.
-
-
-
-\## 6. Trạng thái hiện tại
-
-
-
-Buổi 04 đã hoàn thành các sản phẩm phân tích yêu cầu chính:
-
-
-
-\* Hoàn thành SRS cho luồng L2.
-
-\* Hoàn thành User Story và Acceptance Criteria.
-
-\* Hoàn thành Use Case và phân công trách nhiệm.
-
-\* Hoàn thành Functional Requirements và Non-functional Requirements.
-
-\* Hoàn thành bảng Traceability.
-
-\* Hoàn thành Use Case Diagram ở định dạng `.drawio`.
-
-\* Hoàn thành Business Flow.
-
-\* Hoàn thành API Contract cho Track SE.
-
-\* Hoàn thành tài liệu AI Disclosure.
-
-\* Hoàn thiện cấu trúc repository và các file cấu hình Git cơ bản.
-
-
-
-Các tài liệu được lưu trong thư mục `docs/` và các sơ đồ được lưu trong thư mục `diagrams/`.
-
-
+| Tài liệu | Nội dung |
+|---|---|
+| `docs/srs.md` | Đặc tả yêu cầu phần mềm |
+| `docs/api-contract.md` | Đặc tả API |
+| `docs/database.sql` | Thiết kế cơ sở dữ liệu |
+| `docs/thay-doi-thiet-ke.md` | Ghi nhận thay đổi thiết kế |
+| `docs/ai-disclosure.md` | Công khai việc sử dụng AI |
+| `diagrams/` | Các sơ đồ phân tích và thiết kế |
 

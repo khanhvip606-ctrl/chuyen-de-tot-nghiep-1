@@ -32,3 +32,17 @@ Thumbs.db
 # Build / generated files
 dist/
 build/
+
+# SQLite database and temporary files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.sqlite
+data/*.sqlite3
+
+# Test output
+coverage/
+
+# Local environment
+.env.*
+!.env.example

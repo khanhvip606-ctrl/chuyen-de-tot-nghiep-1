@@ -1,6 +1,7 @@
+
 const ticketRepository = require("../repositories/ticketRepository");
 const customerRepository = require("../repositories/customerRepository");
-const db = require("../database/db");
+const deviceRepository = require("../repositories/deviceRepository");
 
 const VALID_PRIORITIES = ["CAO", "TRUNG_BINH", "THAP"];
 
@@ -10,6 +11,30 @@ const VALID_CATEGORIES = [
   "BAO_HANH",
   "KHAC"
 ];
+
+const VALID_STATUSES = [
+  "MOI",
+  "DANG_XU_LY",
+  "CHO_LINH_KIEN",
+  "DA_HOAN_TAT",
+  "DA_HUY"
+];
+
+function createError(message, status) {
+  const error = new Error(message);
+  error.status = status;
+  return error;
+}
+
+function validateId(id, label = "ID phieu bao hanh") {
+  const parsedId = Number(id);
+
+  if (!Number.isInteger(parsedId) || parsedId <= 0) {
+    throw createError(`${label} khong hop le.`, 400);
+  }
+
+  return parsedId;
+}
 
 function calculateSla(priority, createdAt = new Date()) {
   const slaHours = {
@@ -24,7 +49,7 @@ function calculateSla(priority, createdAt = new Date()) {
   return dueDate.toISOString();
 }
 
-function validateTicket(data) {
+function validateTicket(data = {}) {
   const errors = [];
 
   const customerId = Number(data.customer_id);
@@ -56,27 +81,20 @@ function validateTicket(data) {
   }
 
   if (errors.length > 0) {
-    const error = new Error(errors.join(" "));
-    error.status = 400;
-    throw error;
+    throw createError(errors.join(" "), 400);
   }
 
-  const device = db.prepare(`
-    SELECT device_id, customer_id
-    FROM device
-    WHERE device_id = ?
-  `).get(deviceId);
+  const device = deviceRepository.getById(deviceId);
 
   if (!device) {
-    const error = new Error("Khong tim thay thiet bi.");
-    error.status = 404;
-    throw error;
+    throw createError("Khong tim thay thiet bi.", 404);
   }
 
-  if (device.customer_id !== customerId) {
-    const error = new Error("Thiet bi khong thuoc khach hang da chon.");
-    error.status = 400;
-    throw error;
+  if (Number(device.customer_id) !== customerId) {
+    throw createError(
+      "Thiet bi khong thuoc khach hang da chon.",
+      400
+    );
   }
 
   return {
@@ -96,12 +114,11 @@ function getAllTickets() {
 }
 
 function getTicketById(id) {
-  const ticket = ticketRepository.getById(id);
+  const ticketId = validateId(id);
+  const ticket = ticketRepository.getById(ticketId);
 
   if (!ticket) {
-    const error = new Error("Khong tim thay yeu cau bao hanh.");
-    error.status = 404;
-    throw error;
+    throw createError("Khong tim thay yeu cau bao hanh.", 404);
   }
 
   return ticket;
@@ -126,8 +143,62 @@ function createTicket(data) {
   });
 }
 
+function updateTicketStatus(id, data = {}) {
+  const ticketId = validateId(id);
+
+  // Kiem tra phieu ton tai
+  const existingTicket = ticketRepository.getById(ticketId);
+
+  if (!existingTicket) {
+    throw createError("Khong tim thay yeu cau bao hanh.", 404);
+  }
+
+  // Kiem tra trang thai moi
+  const newStatus = String(data.status || "").trim().toUpperCase();
+
+  if (!VALID_STATUSES.includes(newStatus)) {
+    throw createError("Trang thai phieu bao hanh khong hop le.", 400);
+  }
+
+  const note = data.note == null
+    ? null
+    : String(data.note).trim() || null;
+
+  if (note && note.length > 500) {
+    throw createError("Ghi chu khong duoc vuot qua 500 ky tu.", 400);
+  }
+
+  // Repository cap nhat trang thai va ghi lich su trong cung transaction
+  const result = ticketRepository.updateStatus(
+    ticketId,
+    newStatus,
+    note,
+    "api"
+  );
+
+  return {
+    ticket: ticketRepository.getById(ticketId),
+    changed: result.changed
+  };
+}
+
+function getTicketStatusHistory(id) {
+  const ticketId = validateId(id);
+
+  // Chi tra lich su neu phieu ton tai
+  const ticket = ticketRepository.getById(ticketId);
+
+  if (!ticket) {
+    throw createError("Khong tim thay yeu cau bao hanh.", 404);
+  }
+
+  return ticketRepository.getStatusHistory(ticketId);
+}
+
 module.exports = {
   getAllTickets,
   getTicketById,
-  createTicket
+  createTicket,
+  updateTicketStatus,
+  getTicketStatusHistory
 };

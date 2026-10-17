@@ -1,8 +1,8 @@
-
 CREATE TABLE customer (
     customer_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     customer_name VARCHAR(150) NOT NULL,
-    phone VARCHAR(20) NOT NULL UNIQUE,
+    phone VARCHAR(10) NOT NULL UNIQUE
+        CHECK (phone ~ '^0[0-9]{9}$'),
     email VARCHAR(150),
     address VARCHAR(255)
 );
@@ -25,22 +25,16 @@ CREATE TABLE technician (
     specialization VARCHAR(100)
 );
 
-CREATE TABLE issue_category (
-    issue_category_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    category_name VARCHAR(80) NOT NULL UNIQUE,
-    description VARCHAR(255),
-    is_active BOOLEAN NOT NULL DEFAULT TRUE
-);
-
 CREATE TABLE ticket (
     ticket_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ticket_code VARCHAR(30) NOT NULL UNIQUE,
+    customer_id BIGINT NOT NULL
+        REFERENCES customer(customer_id),
     device_id BIGINT NOT NULL
         REFERENCES device(device_id),
-    issue_category_id BIGINT NOT NULL
-        REFERENCES issue_category(issue_category_id),
     technician_id BIGINT
         REFERENCES technician(technician_id),
+    issue_category VARCHAR(80) NOT NULL,
     issue_description TEXT NOT NULL,
     priority VARCHAR(20) NOT NULL
         CHECK (priority IN ('CAO', 'TRUNG_BINH', 'THAP')),
@@ -64,11 +58,14 @@ CREATE TABLE ticket_status_log (
 CREATE INDEX idx_device_customer
     ON device(customer_id);
 
+CREATE INDEX idx_ticket_customer
+    ON ticket(customer_id);
+
 CREATE INDEX idx_ticket_device
     ON ticket(device_id);
 
 CREATE INDEX idx_ticket_category
-    ON ticket(issue_category_id);
+    ON ticket(issue_category);
 
 CREATE INDEX idx_ticket_status
     ON ticket(status);

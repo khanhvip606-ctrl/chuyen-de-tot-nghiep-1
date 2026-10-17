@@ -1,0 +1,17 @@
+{
+  "name": "smart-crm-mekong-mobile",
+  "version": "1.0.0",
+  "description": "Smart CRM Mekong Mobile - Luong L2 tiep nhan va phan loai yeu cau bao hanh",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

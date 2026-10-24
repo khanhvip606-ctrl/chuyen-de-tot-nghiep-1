@@ -46,3 +46,12 @@ coverage/
 # Local environment
 .env.*
 !.env.example
+
+# Local backup files
+*.bak
+*.backup-*
+
+# Temporary repair scripts
+client/fix-encoding.ps1
+client/fix-form.ps1
+client/repair-encoding.ps1

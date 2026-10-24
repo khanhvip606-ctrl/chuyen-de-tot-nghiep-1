@@ -110,17 +110,31 @@ Các chức năng chính:
 
 Các chức năng quản lý kho, sửa chữa chi tiết, khảo sát hài lòng và thanh toán không thuộc phạm vi triển khai chính của luồng L2 trong giai đoạn này.
 
-## 6. Trạng thái hiện tại – Buổi 08
+## 6. Trạng thái triển khai hiện tại – Buổi 10
 
-- Đã có cấu trúc backend gồm `routes/`, `services/` và `repositories/`.
-- Đã xây dựng các module xử lý khách hàng, thiết bị và yêu cầu bảo hành.
-- Đã bổ sung unit test cho nghiệp vụ tạo yêu cầu bảo hành.
-- Đã chạy `npm test` thành công với **2 test PASS, 0 test FAIL**.
-- Đã cập nhật `.gitignore` để loại trừ cơ sở dữ liệu SQLite và các file môi trường cục bộ.
-- Đã có file `.env.example` làm mẫu cấu hình.
-- Đã có tài liệu `docs/thay-doi-thiet-ke.md` ghi nhận các quyết định điều chỉnh thiết kế.
+### Backend và cơ sở dữ liệu
+- Đã xây dựng backend bằng Node.js và Express theo mô hình `routes/`, `services/`, `repositories/`.
+- Đã triển khai các chức năng tiếp nhận phiếu bảo hành, kiểm tra dữ liệu đầu vào, cập nhật trạng thái và truy xuất lịch sử trạng thái.
+- Đã cấu hình SQLite để lưu trữ dữ liệu.
+- Đã bổ sung script migration và seed dữ liệu mẫu.
 
-Các công việc tiếp theo là tiếp tục kiểm tra migration và seed dữ liệu, hoàn thiện CRUD qua ba lớp, kiểm thử API bằng Postman hoặc curl, bổ sung ảnh minh chứng và cập nhật tài liệu theo kết quả triển khai thực tế.
+### Kiểm thử
+- Đã kiểm thử API tạo phiếu bảo hành.
+- Đã kiểm tra trường hợp dữ liệu đầu vào không hợp lệ.
+- Đã kiểm tra cập nhật trạng thái phiếu và truy xuất lịch sử trạng thái.
+- Đã bổ sung 5 unit tests cho `ticketService`.
+- Kết quả chạy `npm test` gần nhất: **5 tests PASS, 0 tests FAIL**.
+
+### Minh chứng và tài liệu
+- Đã lưu ảnh minh chứng kiểm thử trong `anhchungminh/` và `docs/`.
+- Các tài liệu yêu cầu, hợp đồng API, thiết kế cơ sở dữ liệu và thay đổi thiết kế được lưu trong `docs/`.
+- Mã nguồn và minh chứng đã được commit, push lên nhánh `main` của GitHub.
+
+### Công việc cần tiếp tục rà soát
+- Đối chiếu yêu cầu Sprint 2 với chức năng đã triển khai.
+- Kiểm tra CRUD, API contract và các trường hợp biên.
+- Xác định yêu cầu giao diện người dùng theo đề bài trước khi triển khai frontend.
+- Cập nhật tài liệu và minh chứng theo kết quả kiểm thử thực tế.
 
 ## 7. Tài liệu tham khảo trong repository
 

@@ -42,3 +42,24 @@ export async function request(path, options = {}) {
 
   return result.data;
 }
+export const authApi = {
+  login: async (username, password) => {
+    const result = await request("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    });
+
+    localStorage.setItem("token", result.token);
+    return result;
+  },
+
+  logout: async () => {
+    try {
+      await request("/auth/logout", {
+        method: "POST",
+      });
+    } finally {
+      localStorage.removeItem("token");
+    }
+  },
+};

@@ -1,33 +1,39 @@
 
 const customerRepository = require("../repositories/customerRepository");
 
+function createError(message, status) {
+  const error = new Error(message);
+  error.status = status;
+  return error;
+}
+
 function validateCustomer(data) {
   const errors = [];
 
-  if (!data.customer_name || !String(data.customer_name).trim()) {
-    errors.push("Tên khách hàng không được để trống.");
+  if (!data || !data.customer_name || !String(data.customer_name).trim()) {
+    errors.push("Ten khach hang khong duoc de trong.");
   }
 
-  const phone = String(data.phone || "").trim();
+  const phone = String(data?.phone || "").trim();
 
   if (!/^0\d{9}$/.test(phone)) {
-    errors.push("Số điện thoại phải có 10 chữ số và bắt đầu bằng 0.");
+    errors.push("So dien thoai phai co 10 chu so va bat dau bang 0.");
   }
 
-  if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.push("Email không đúng định dạng.");
+  const email = data?.email ? String(data.email).trim() : "";
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.push("Email khong dung dinh dang.");
   }
 
   if (errors.length > 0) {
-    const error = new Error(errors.join(" "));
-    error.status = 400;
-    throw error;
+    throw createError(errors.join(" "), 400);
   }
 
   return {
     customer_name: String(data.customer_name).trim(),
     phone,
-    email: data.email ? String(data.email).trim() : null,
+    email: email || null,
     address: data.address ? String(data.address).trim() : null
   };
 }
@@ -39,10 +45,8 @@ function getAllCustomers() {
 function getCustomerById(id) {
   const customer = customerRepository.getById(id);
 
-  if (!customer) {
-    const error = new Error("Không tìm thấy khách hàng.");
-    error.status = 404;
-    throw error;
+  if (!customer || customer.is_active !== 1) {
+    throw createError("Khong tim thay khach hang.", 404);
   }
 
   return customer;
@@ -50,40 +54,47 @@ function getCustomerById(id) {
 
 function createCustomer(data) {
   const customerData = validateCustomer(data);
+  const existing = customerRepository.getByPhone(customerData.phone);
 
-  if (customerRepository.getByPhone(customerData.phone)) {
-    const error = new Error("Số điện thoại đã tồn tại.");
-    error.status = 409;
-    throw error;
+  if (existing) {
+    throw createError("So dien thoai da ton tai.", 409);
   }
 
   return customerRepository.create(customerData);
 }
 
 function updateCustomer(id, data) {
-  const existingCustomer = customerRepository.getById(id);
-
-  if (!existingCustomer) {
-    const error = new Error("Không tìm thấy khách hàng.");
-    error.status = 404;
-    throw error;
-  }
+  getCustomerById(id);
 
   const customerData = validateCustomer(data);
   const duplicate = customerRepository.getByPhone(customerData.phone);
 
   if (duplicate && duplicate.customer_id !== Number(id)) {
-    const error = new Error("Số điện thoại đã thuộc khách hàng khác.");
-    error.status = 409;
-    throw error;
+    throw createError("So dien thoai da thuoc khach hang khac.", 409);
   }
 
   return customerRepository.update(Number(id), customerData);
+}
+
+function deleteCustomer(id) {
+  getCustomerById(id);
+
+  const deleted = customerRepository.deactivate(Number(id));
+
+  if (!deleted) {
+    throw createError("Khong the ngung hoat dong khach hang.", 400);
+  }
+
+  return {
+    customer_id: Number(id),
+    is_active: 0
+  };
 }
 
 module.exports = {
   getAllCustomers,
   getCustomerById,
   createCustomer,
-  updateCustomer
+  updateCustomer,
+  deleteCustomer
 };

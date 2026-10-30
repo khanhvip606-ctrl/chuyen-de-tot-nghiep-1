@@ -1,16 +1,16 @@
-
 const express = require("express");
+
+const authRoutes = require("./routes/authRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const deviceRoutes = require("./routes/deviceRoutes");
 const ticketRoutes = require("./routes/ticketRoutes");
+const authMiddleware = require("./middlewares/authMiddleware");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Doc du lieu JSON tu request body
 app.use(express.json());
 
-// Kiem tra server
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -18,16 +18,15 @@ app.get("/", (req, res) => {
   });
 });
 
-// API khach hang
-app.use("/api/customers", customerRoutes);
+// API dang nhap, dang xuat, kiem tra phien
+app.use("/api/auth", authRoutes);
 
-// API thiet bi
-app.use("/api/devices", deviceRoutes);
+// Cac API nghiep vu yeu cau dang nhap
+app.use("/api/customers", authMiddleware, customerRoutes);
+app.use("/api/devices", authMiddleware, deviceRoutes);
+app.use("/api/tickets", authMiddleware, ticketRoutes);
 
-// API yeu cau bao hanh
-app.use("/api/tickets", ticketRoutes);
-
-// Xu ly loi tap trung
+// Xu ly loi
 app.use((err, req, res, next) => {
   console.error(err.message);
 
@@ -37,13 +36,11 @@ app.use((err, req, res, next) => {
 
   res.status(status).json({
     success: false,
-    message: status === 500
-      ? "Loi may chu."
-      : err.message
+    message: status === 500 ? "Loi may chu." : err.message
   });
 });
 
-// Xu ly endpoint khong ton tai
+// API khong ton tai
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -51,7 +48,6 @@ app.use((req, res) => {
   });
 });
 
-// Khoi dong server
 app.listen(PORT, () => {
   console.log(`Smart CRM API dang chay tai http://localhost:${PORT}`);
 });

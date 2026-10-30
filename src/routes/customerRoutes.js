@@ -78,5 +78,27 @@ router.put("/:id", (req, res, next) => {
     next(error);
   }
 });
+// DELETE /api/customers/:id - Ngung hoat dong khach hang
+router.delete("/:id", (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
 
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "ID khach hang khong hop le."
+      });
+    }
+
+    const customer = customerService.deleteCustomer(id);
+
+    res.json({
+      success: true,
+      message: "Ngung hoat dong khach hang thanh cong.",
+      data: customer
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;

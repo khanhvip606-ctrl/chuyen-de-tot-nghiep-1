@@ -1,6 +1,6 @@
 
 const db = require("./db");
-
+const crypto = require("crypto");
 const seed = db.transaction(() => {
   // 1. Them khach hang mau
   const insertCustomer = db.prepare(`
@@ -205,11 +205,50 @@ const seed = db.transaction(() => {
     )
   `).all();
 
-  for (const ticket of seededTickets) {
+   for (const ticket of seededTickets) {
     insertLogIfMissing.run(
       ticket.ticket_id,
       ticket.ticket_id
     );
+  }
+
+  // 6. Tao tai khoan quan tri neu chua ton tai
+  const adminUsername = process.env.ADMIN_USERNAME?.trim();
+  const adminPassword = process.env.ADMIN_PASSWORD;
+
+  if (
+    !adminUsername ||
+    !adminPassword ||
+    adminPassword.length < 12
+  ) {
+    throw new Error(
+      "ADMIN_USERNAME va ADMIN_PASSWORD (toi thieu 12 ky tu) la bat buoc."
+    );
+  }
+
+  const findAdmin = db.prepare(`
+    SELECT user_id
+    FROM users
+    WHERE username = ?
+  `);
+
+  const existingAdmin = findAdmin.get(adminUsername);
+
+  if (!existingAdmin) {
+    const salt = crypto.randomBytes(16).toString("hex");
+
+    const passwordHash = crypto
+      .scryptSync(adminPassword, salt, 64)
+      .toString("hex");
+
+    db.prepare(`
+      INSERT INTO users (username, password_hash, role)
+      VALUES (?, ?, 'ADMIN')
+    `).run(adminUsername, `${salt}:${passwordHash}`);
+
+    console.log("Admin account created.");
+  } else {
+    console.log("Admin account already exists.");
   }
 });
 

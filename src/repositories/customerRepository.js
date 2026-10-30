@@ -2,26 +2,31 @@
 const db = require("../database/db");
 
 const findAll = db.prepare(`
-  SELECT customer_id, customer_name, phone, email, address
+  SELECT customer_id, customer_name, phone, email, address, is_active
   FROM customer
+  WHERE is_active = 1
   ORDER BY customer_id DESC
 `);
 
 const findById = db.prepare(`
-  SELECT customer_id, customer_name, phone, email, address
+  SELECT customer_id, customer_name, phone, email, address, is_active
   FROM customer
   WHERE customer_id = ?
 `);
 
 const findByPhone = db.prepare(`
-  SELECT customer_id, customer_name, phone, email, address
+  SELECT customer_id, customer_name, phone, email, address, is_active
   FROM customer
   WHERE phone = ?
 `);
 
 const insertCustomer = db.prepare(`
-  INSERT INTO customer (customer_name, phone, email, address)
-  VALUES (@customer_name, @phone, @email, @address)
+  INSERT INTO customer (
+    customer_name, phone, email, address
+  )
+  VALUES (
+    @customer_name, @phone, @email, @address
+  )
 `);
 
 const updateCustomer = db.prepare(`
@@ -31,6 +36,14 @@ const updateCustomer = db.prepare(`
       email = @email,
       address = @address
   WHERE customer_id = @customer_id
+    AND is_active = 1
+`);
+
+const deactivateCustomer = db.prepare(`
+  UPDATE customer
+  SET is_active = 0
+  WHERE customer_id = ?
+    AND is_active = 1
 `);
 
 function getAll() {
@@ -47,17 +60,20 @@ function getByPhone(phone) {
 
 function create(data) {
   const result = insertCustomer.run(data);
-
   return getById(Number(result.lastInsertRowid));
 }
 
 function update(id, data) {
   updateCustomer.run({
-    customer_id: id,
-    ...data
+    ...data,
+    customer_id: id
   });
 
   return getById(id);
+}
+
+function deactivate(id) {
+  return deactivateCustomer.run(id).changes > 0;
 }
 
 module.exports = {
@@ -65,5 +81,6 @@ module.exports = {
   getById,
   getByPhone,
   create,
-  update
+  update,
+  deactivate
 };

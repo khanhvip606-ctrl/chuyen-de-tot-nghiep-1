@@ -1,3 +1,4 @@
+
 const db = require("../database/db");
 
 const findAll = db.prepare(`
@@ -7,8 +8,10 @@ const findAll = db.prepare(`
     serial_number,
     device_name,
     purchase_date,
-    warranty_expiry
+    warranty_expiry,
+    is_active
   FROM device
+  WHERE is_active = 1
   ORDER BY device_id DESC
 `);
 
@@ -19,7 +22,8 @@ const findById = db.prepare(`
     serial_number,
     device_name,
     purchase_date,
-    warranty_expiry
+    warranty_expiry,
+    is_active
   FROM device
   WHERE device_id = ?
 `);
@@ -31,7 +35,8 @@ const findBySerial = db.prepare(`
     serial_number,
     device_name,
     purchase_date,
-    warranty_expiry
+    warranty_expiry,
+    is_active
   FROM device
   WHERE serial_number = ?
 `);
@@ -53,6 +58,24 @@ const insertDevice = db.prepare(`
   )
 `);
 
+const updateDevice = db.prepare(`
+  UPDATE device
+  SET customer_id = @customer_id,
+      serial_number = @serial_number,
+      device_name = @device_name,
+      purchase_date = @purchase_date,
+      warranty_expiry = @warranty_expiry
+  WHERE device_id = @device_id
+    AND is_active = 1
+`);
+
+const deactivateDevice = db.prepare(`
+  UPDATE device
+  SET is_active = 0
+  WHERE device_id = ?
+    AND is_active = 1
+`);
+
 function getAll() {
   return findAll.all();
 }
@@ -67,13 +90,27 @@ function getBySerial(serialNumber) {
 
 function create(data) {
   const result = insertDevice.run(data);
-
   return getById(Number(result.lastInsertRowid));
+}
+
+function update(id, data) {
+  updateDevice.run({
+    ...data,
+    device_id: id
+  });
+
+  return getById(id);
+}
+
+function deactivate(id) {
+  return deactivateDevice.run(id).changes > 0;
 }
 
 module.exports = {
   getAll,
   getById,
   getBySerial,
-  create
+  create,
+  update,
+  deactivate
 };

@@ -1,15 +1,14 @@
-
 {
   "name": "smart-crm-mekong-mobile",
   "version": "1.0.0",
   "description": "Smart CRM Mekong Mobile - Luong L2 tiep nhan va phan loai yeu cau bao hanh",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
+    "start": "node --env-file-if-exists=.env src/app.js",
+    "dev": "nodemon --exec \"node --env-file-if-exists=.env\" src/app.js",
     "test": "node --test",
-    "migrate": "node src/database/init.js",
-    "seed": "node src/database/seed.js"
+    "migrate": "node --env-file-if-exists=.env src/database/init.js",
+    "seed": "node --env-file-if-exists=.env src/database/seed.js"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",

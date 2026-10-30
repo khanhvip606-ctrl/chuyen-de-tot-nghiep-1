@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS customer (
         AND phone GLOB '0[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
     ),
     email TEXT,
-    address TEXT
+    address TEXT,
+    is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1))
 );
 
 CREATE TABLE IF NOT EXISTS device (
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS device (
     serial_number TEXT NOT NULL UNIQUE,
     device_name TEXT NOT NULL,
     purchase_date TEXT,
-    warranty_expiry TEXT
+    warranty_expiry TEXT,
+    is_active INTEGER NOT NULL DEFAULT 1 CHECK (is_active IN (0, 1))
 );
 
 CREATE TABLE IF NOT EXISTS technician (
@@ -60,3 +62,29 @@ CREATE INDEX IF NOT EXISTS idx_ticket_category ON ticket(issue_category);
 CREATE INDEX IF NOT EXISTS idx_ticket_status ON ticket(status);
 CREATE INDEX IF NOT EXISTS idx_status_log_ticket_time
     ON ticket_status_log(ticket_id, changed_at);
+-- Tai khoan dang nhap
+CREATE TABLE IF NOT EXISTS users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL DEFAULT 'STAFF'
+        CHECK (role IN ('ADMIN', 'STAFF')),
+    is_active INTEGER NOT NULL DEFAULT 1
+        CHECK (is_active IN (0, 1)),
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Phien dang nhap
+CREATE TABLE IF NOT EXISTS auth_sessions (
+    session_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(user_id),
+    token_hash TEXT NOT NULL UNIQUE,
+    expires_at TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_auth_sessions_user
+    ON auth_sessions(user_id);
+
+CREATE INDEX IF NOT EXISTS idx_auth_sessions_expiry
+    ON auth_sessions(expires_at);

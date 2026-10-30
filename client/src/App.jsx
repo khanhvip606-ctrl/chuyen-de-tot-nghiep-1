@@ -9,6 +9,8 @@ import {
 import { ticketApi } from "./api/tickets.api";
 import { customerApi } from "./api/customers.api";
 import { deviceApi } from "./api/devices.api";
+import { authApi } from "./api/client";
+import Login from "./Login";
 import "./App.css";
 
 const STATUSES = [
@@ -86,6 +88,11 @@ function DataState({ loading, error, empty, onRetry, children }) {
 }
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
+  const [currentUser, setCurrentUser] = useState(null);
+
   const [page, setPage] = useState("tickets");
   const [tickets, setTickets] = useState([]);
   const [customers, setCustomers] = useState([]);
@@ -169,20 +176,22 @@ const [form, setForm] = useState(initialForm);
       setLoading(false);
     }
   }, []);
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadData();
-  }, [loadData]);
+    if (isAuthenticated) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      loadData();
+    }
+  }, [isAuthenticated, loadData]);
+ useEffect(() => {
+  const handleExpired = () => {
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+    setNotice("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.");
+  };
 
-  useEffect(() => {
-    const handleExpired = () => {
-      setNotice("Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại.");
-    };
-
-    window.addEventListener("auth-expired", handleExpired);
-    return () => window.removeEventListener("auth-expired", handleExpired);
-  }, []);
+  window.addEventListener("auth-expired", handleExpired);
+  return () => window.removeEventListener("auth-expired", handleExpired);
+}, []);
 
   const loadDetail = useCallback(async (id) => {
     setSelectedId(id);
@@ -356,10 +365,32 @@ async function createTicket(event) {
       setSaving(false);
     }
   }
+function handleLogin(user) {
+  setCurrentUser(user);
+  setIsAuthenticated(true);
+  setPage("tickets");
+  setNotice("Đăng nhập thành công.");
+}
 
+async function handleLogout() {
+  try {
+    await authApi.logout();
+  } catch (err) {
+    console.error("Lỗi đăng xuất:", err.message);
+  } finally {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+    setPage("tickets");
+  }
+}
   const currentCustomer = customers.find(
     (customer) => String(customer.customer_id) === String(form.customer_id)
   );
+
+    if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   return (
     <div className="app-shell">
@@ -437,7 +468,10 @@ async function createTicket(event) {
             <button className="icon-button" title="Làm mới dữ liệu" onClick={loadData}>
               <RefreshCw size={18} />
             </button>
-            <div className="top-avatar"><Users size={18} /></div>
+            <span>{currentUser?.username || "Nhân viên"}</span>
+<button className="button secondary" onClick={handleLogout}>
+  Đăng xuất
+</button>
           </div>
         </header>
 

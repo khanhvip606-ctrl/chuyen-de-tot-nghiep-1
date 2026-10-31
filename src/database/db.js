@@ -1,21 +1,28 @@
-
 const Database = require("better-sqlite3");
 const path = require("path");
 const fs = require("fs");
 
-const dataDir = path.join(__dirname, "..", "..", "data");
+const defaultDataDir = path.join(__dirname, "..", "..", "data");
 
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+let dbPath;
+
+if (process.env.DB_PATH) {
+  // Cho phep su dung database rieng khi kiem thu.
+  dbPath = path.resolve(process.env.DB_PATH);
+
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+} else {
+  // Database chinh cua ung dung.
+  fs.mkdirSync(defaultDataDir, { recursive: true });
+  dbPath = path.join(defaultDataDir, "smart-crm.db");
 }
 
-const dbPath = path.join(dataDir, "smart-crm.db");
 const db = new Database(dbPath);
 
-// Bật kiểm tra khóa ngoại trong SQLite.
+// Bat kiem tra khoa ngoai.
 db.pragma("foreign_keys = ON");
 
-// Tăng độ an toàn khi nhiều thao tác đọc/ghi cùng lúc.
+// Ho tro nhieu thao tac doc/ghi.
 db.pragma("journal_mode = WAL");
 
 module.exports = db;

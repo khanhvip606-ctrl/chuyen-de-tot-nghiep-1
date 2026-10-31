@@ -36,6 +36,9 @@ function validateId(id, label = "ID phieu bao hanh") {
   return parsedId;
 }
 
+// Tinh SLA theo lich lam viec Viet Nam (UTC+7).
+// Thu Hai - Thu Bay: 08:00 - 17:00.
+// Chu Nhat: nghi.
 function calculateSla(priority, createdAt = new Date()) {
   const slaHours = {
     CAO: 24,
@@ -43,10 +46,68 @@ function calculateSla(priority, createdAt = new Date()) {
     THAP: 120
   };
 
-  const dueDate = new Date(createdAt);
-  dueDate.setHours(dueDate.getHours() + slaHours[priority]);
+  const totalHours = slaHours[priority];
 
-  return dueDate.toISOString();
+  if (!totalHours) {
+    throw createError("Muc do uu tien khong hop le.", 400);
+  }
+
+  const OFFSET = 7 * 60 * 60 * 1000;
+  const START_HOUR = 8;
+  const END_HOUR = 17;
+
+  const inputDate = new Date(createdAt);
+
+  if (Number.isNaN(inputDate.getTime())) {
+    throw createError("Thoi diem tao phieu khong hop le.", 400);
+  }
+
+  // Chuyen sang gio Viet Nam de tinh SLA.
+  const date = new Date(inputDate.getTime() + OFFSET);
+
+  let remainingMs = totalHours * 60 * 60 * 1000;
+
+  function nextWorkday() {
+    date.setUTCDate(date.getUTCDate() + 1);
+
+    // Bo qua Chu Nhat.
+    while (date.getUTCDay() === 0) {
+      date.setUTCDate(date.getUTCDate() + 1);
+    }
+
+    date.setUTCHours(START_HOUR, 0, 0, 0);
+  }
+
+  // Neu la Chu Nhat, chuyen sang ngay lam viec tiep theo.
+  while (date.getUTCDay() === 0) {
+    nextWorkday();
+  }
+
+  // Neu truoc 08:00, bat dau tu 08:00.
+  if (date.getUTCHours() < START_HOUR) {
+    date.setUTCHours(START_HOUR, 0, 0, 0);
+  } else if (date.getUTCHours() >= END_HOUR) {
+    // Neu tu 17:00 tro di, chuyen sang ngay lam viec tiep theo.
+    nextWorkday();
+  }
+
+  while (remainingMs > 0) {
+    const endOfDay = new Date(date);
+    endOfDay.setUTCHours(END_HOUR, 0, 0, 0);
+
+    const availableMs = endOfDay.getTime() - date.getTime();
+
+    if (remainingMs <= availableMs) {
+      date.setTime(date.getTime() + remainingMs);
+      remainingMs = 0;
+    } else {
+      remainingMs -= availableMs;
+      nextWorkday();
+    }
+  }
+
+  // Chuyen tu gio Viet Nam ve UTC de luu vao SQLite.
+  return new Date(date.getTime() - OFFSET).toISOString();
 }
 
 function validateTicket(data = {}) {
@@ -146,14 +207,12 @@ function createTicket(data) {
 function updateTicketStatus(id, data = {}) {
   const ticketId = validateId(id);
 
-  // Kiem tra phieu ton tai
   const existingTicket = ticketRepository.getById(ticketId);
 
   if (!existingTicket) {
     throw createError("Khong tim thay yeu cau bao hanh.", 404);
   }
 
-  // Kiem tra trang thai moi
   const newStatus = String(data.status || "").trim().toUpperCase();
 
   if (!VALID_STATUSES.includes(newStatus)) {
@@ -168,7 +227,6 @@ function updateTicketStatus(id, data = {}) {
     throw createError("Ghi chu khong duoc vuot qua 500 ky tu.", 400);
   }
 
-  // Repository cap nhat trang thai va ghi lich su trong cung transaction
   const result = ticketRepository.updateStatus(
     ticketId,
     newStatus,
@@ -185,7 +243,6 @@ function updateTicketStatus(id, data = {}) {
 function getTicketStatusHistory(id) {
   const ticketId = validateId(id);
 
-  // Chi tra lich su neu phieu ton tai
   const ticket = ticketRepository.getById(ticketId);
 
   if (!ticket) {
@@ -200,5 +257,6 @@ module.exports = {
   getTicketById,
   createTicket,
   updateTicketStatus,
-  getTicketStatusHistory
+  getTicketStatusHistory,
+  calculateSla
 };

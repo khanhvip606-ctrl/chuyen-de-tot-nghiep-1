@@ -2,32 +2,61 @@
 
 ## 1. Mục tiêu
 
-Đề tài tập trung phân tích và từng bước triển khai **Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành** trong hệ thống Smart CRM của Mekong Mobile.
+Đề tài tập trung phân tích và triển khai **Luồng L2 – Tiếp nhận và phân loại yêu cầu bảo hành** trong hệ thống Smart CRM của Mekong Mobile.
 
-Mục tiêu là chuyển đổi yêu cầu nghiệp vụ thành các tài liệu phân tích, thiết kế và mã nguồn có thể kiểm thử.
+Mục tiêu là chuyển đổi yêu cầu nghiệp vụ thành tài liệu phân tích, thiết kế và ứng dụng có thể kiểm thử.
 
 Phạm vi chính gồm:
 
-- Tra cứu thông tin khách hàng.
-- Tạo hồ sơ khách hàng.
+- Tra cứu và tạo hồ sơ khách hàng.
 - Ghi nhận thông tin thiết bị.
 - Kiểm tra tình trạng bảo hành.
 - Ghi nhận mô tả lỗi và nhóm sự cố.
 - Xác định mức độ ưu tiên.
-- Xác định hạn cam kết xử lý.
+- Tính hạn cam kết xử lý.
+- Theo dõi trạng thái và lịch sử xử lý phiếu bảo hành.
 
-## 2. Yêu cầu môi trường
+## 2. Công nghệ sử dụng
+
+### Backend
+- Node.js.
+- Express.
+- SQLite.
+- better-sqlite3.
+- Node.js Test Runner (`node:test`).
+
+### Frontend
+- React.
+- Vite.
+- JavaScript.
+- CSS.
+
+### Công cụ
+- Git/GitHub.
+- Postman hoặc công cụ tương đương.
+- draw.io.
+
+## 3. Yêu cầu môi trường
 
 - Windows 10/11.
 - Node.js và npm.
 - Git.
-- Notepad hoặc Visual Studio Code.
-- draw.io Desktop hoặc draw.io trên trình duyệt để chỉnh sửa sơ đồ.
-- Postman hoặc công cụ tương đương để kiểm thử API.
+- Trình duyệt web hiện đại.
 
-Các thư viện Node.js được khai báo trong `package.json`.
+## 4. Cài đặt và chạy dự án
 
-### Cài đặt và chạy dự án
+### 4.1. Tải mã nguồn
+
+```bash
+git clone https://github.com/khanhvip606-ctrl/chuyen-de-tot-nghiep-1.git
+cd chuyen-de-tot-nghiep-1
+```
+
+### 4.2. Cấu hình Backend
+
+Tạo file `.env` từ `.env.example`, sau đó cập nhật các biến môi trường phù hợp.
+
+Không đưa file `.env` chứa mật khẩu thật lên GitHub.
 
 Cài đặt thư viện:
 
@@ -35,31 +64,70 @@ Cài đặt thư viện:
 npm install
 ```
 
-Khởi chạy ứng dụng:
+Khởi tạo cơ sở dữ liệu:
+
+```bash
+npm run migrate
+```
+
+Tạo dữ liệu mẫu:
+
+```bash
+npm run seed
+```
+
+Khởi chạy Backend:
 
 ```bash
 npm start
 ```
 
-Chạy chế độ phát triển:
+Backend mặc định chạy tại:
+
+```text
+http://localhost:3000
+```
+
+### 4.3. Chạy Frontend
+
+Mở một cửa sổ terminal khác:
 
 ```bash
+cd client
+npm install
 npm run dev
 ```
 
-Chạy kiểm thử tự động:
+Mở địa chỉ Frontend do Vite hiển thị, thông thường là:
+
+```text
+http://localhost:5173/
+```
+
+### 4.4. Chạy kiểm thử
+
+Tại thư mục gốc dự án:
 
 ```bash
 npm test
 ```
 
-Ứng dụng mặc định sử dụng cổng 3000. Có thể cấu hình cổng thông qua biến môi trường `PORT`.
-
-## 3. Cấu trúc thư mục
+## 5. Cấu trúc thư mục
 
 ```text
 chuyen-de-tot-nghiep-1/
 ├── anhchungminh/
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── App.jsx
+│   │   ├── Login.jsx
+│   │   ├── App.css
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.js
 ├── data/
 ├── diagrams/
 ├── docs/
@@ -69,14 +137,13 @@ chuyen-de-tot-nghiep-1/
 │   ├── srs.md
 │   └── thay-doi-thiet-ke.md
 ├── src/
-│   ├── app.js
 │   ├── database/
 │   ├── middlewares/
 │   ├── repositories/
 │   ├── routes/
-│   └── services/
+│   ├── services/
+│   └── app.js
 ├── tests/
-│   └── ticketService.test.js
 ├── .env.example
 ├── .gitignore
 ├── package.json
@@ -84,18 +151,9 @@ chuyen-de-tot-nghiep-1/
 └── README.md
 ```
 
-Thư mục `data/` lưu cơ sở dữ liệu SQLite trên máy phát triển. File cơ sở dữ liệu và các file tạm không được đưa lên GitHub.
+Thư mục `data/` lưu cơ sở dữ liệu SQLite trên máy phát triển. File `.env` và các dữ liệu nhạy cảm không được đưa lên GitHub.
 
-## 4. Công nghệ sử dụng
-
-- **Node.js:** môi trường thực thi JavaScript phía máy chủ.
-- **Express:** xây dựng REST API.
-- **SQLite:** lưu trữ dữ liệu quan hệ.
-- **better-sqlite3:** kết nối và thao tác với SQLite.
-- **Node.js Test Runner:** chạy unit test bằng `node:test` và `node:assert/strict`.
-- **Git/GitHub:** quản lý mã nguồn và lịch sử thay đổi.
-
-## 5. Phạm vi nghiệp vụ
+## 6. Phạm vi nghiệp vụ
 
 Luồng L2 tập trung vào việc tiếp nhận và phân loại yêu cầu bảo hành.
 
@@ -103,40 +161,66 @@ Các chức năng chính:
 
 - Tra cứu và tạo hồ sơ khách hàng.
 - Ghi nhận thiết bị và thông tin liên quan.
-- Kiểm tra dữ liệu đầu vào của yêu cầu bảo hành.
+- Kiểm tra dữ liệu đầu vào.
 - Ghi nhận mô tả lỗi và nhóm sự cố.
 - Phân loại mức độ ưu tiên.
 - Tính hạn xử lý theo mức độ ưu tiên.
+- Cập nhật trạng thái phiếu.
+- Lưu lịch sử thay đổi trạng thái.
 
 Các chức năng quản lý kho, sửa chữa chi tiết, khảo sát hài lòng và thanh toán không thuộc phạm vi triển khai chính của luồng L2 trong giai đoạn này.
 
-## 6. Trạng thái triển khai hiện tại – Buổi 10
+## 7. Trạng thái triển khai hiện tại – Sprint 2
 
-### Backend và cơ sở dữ liệu
-- Đã xây dựng backend bằng Node.js và Express theo mô hình `routes/`, `services/`, `repositories/`.
-- Đã triển khai các chức năng tiếp nhận phiếu bảo hành, kiểm tra dữ liệu đầu vào, cập nhật trạng thái và truy xuất lịch sử trạng thái.
-- Đã cấu hình SQLite để lưu trữ dữ liệu.
-- Đã bổ sung script migration và seed dữ liệu mẫu.
+### 7.1. Backend và cơ sở dữ liệu
 
-### Kiểm thử
-- Đã kiểm thử API tạo phiếu bảo hành.
-- Đã kiểm tra trường hợp dữ liệu đầu vào không hợp lệ.
-- Đã kiểm tra cập nhật trạng thái phiếu và truy xuất lịch sử trạng thái.
-- Đã bổ sung 5 unit tests cho `ticketService`.
-- Kết quả chạy `npm test` gần nhất: **5 tests PASS, 0 tests FAIL**.
+- Xây dựng Backend bằng Node.js và Express theo mô hình `routes/`, `services/`, `repositories/`.
+- Triển khai các API tiếp nhận phiếu bảo hành.
+- Kiểm tra dữ liệu đầu vào.
+- Cập nhật trạng thái phiếu và truy xuất lịch sử trạng thái.
+- Sử dụng SQLite để lưu trữ dữ liệu.
+- Bổ sung migration và seed dữ liệu mẫu.
+- Bổ sung xác thực đăng nhập và quản lý phiên đăng nhập.
 
-### Minh chứng và tài liệu
-- Đã lưu ảnh minh chứng kiểm thử trong `anhchungminh/` và `docs/`.
-- Các tài liệu yêu cầu, hợp đồng API, thiết kế cơ sở dữ liệu và thay đổi thiết kế được lưu trong `docs/`.
-- Mã nguồn và minh chứng đã được commit, push lên nhánh `main` của GitHub.
+### 7.2. Frontend
 
-### Công việc cần tiếp tục rà soát
-- Đối chiếu yêu cầu Sprint 2 với chức năng đã triển khai.
-- Kiểm tra CRUD, API contract và các trường hợp biên.
-- Xác định yêu cầu giao diện người dùng theo đề bài trước khi triển khai frontend.
-- Cập nhật tài liệu và minh chứng theo kết quả kiểm thử thực tế.
+- Xây dựng giao diện bằng React và Vite.
+- Bổ sung màn hình đăng nhập.
+- Xây dựng giao diện tổng quan.
+- Xây dựng màn hình danh sách phiếu bảo hành.
+- Xây dựng màn hình chi tiết và tiếp nhận yêu cầu.
+- Tách các module gọi API trong thư mục `client/src/api/`.
+- Kết nối giao diện với Backend.
+- Bổ sung trạng thái tải dữ liệu, dữ liệu trống, lỗi và thử lại.
 
-## 7. Tài liệu tham khảo trong repository
+### 7.3. Kiểm thử
+
+- Kiểm thử API tạo phiếu bảo hành.
+- Kiểm tra trường hợp dữ liệu đầu vào không hợp lệ.
+- Kiểm tra cập nhật trạng thái phiếu.
+- Kiểm tra truy xuất lịch sử trạng thái.
+- Bổ sung 5 unit tests cho `ticketService`.
+
+Kết quả kiểm thử gần nhất được ghi nhận: **5 tests PASS, 0 tests FAIL**.
+
+### 7.4. Tài liệu và minh chứng
+
+- Lưu ảnh minh chứng trong `anhchungminh/`.
+- Lưu đặc tả yêu cầu trong `docs/srs.md`.
+- Lưu hợp đồng API trong `docs/api-contract.md`.
+- Lưu thiết kế cơ sở dữ liệu trong `docs/database.sql`.
+- Ghi nhận thay đổi thiết kế trong `docs/thay-doi-thiet-ke.md`.
+- Công khai việc sử dụng AI trong `docs/ai-disclosure.md`.
+
+## 8. Công việc tiếp tục rà soát
+
+- Đối chiếu các yêu cầu Sprint 2 với chức năng đã triển khai.
+- Rà soát CRUD và các trường hợp biên.
+- Kiểm tra quy trình đăng nhập và đăng xuất.
+- Kiểm tra các trạng thái tải, rỗng và lỗi của giao diện.
+- Hoàn thiện tài liệu và minh chứng theo kết quả kiểm thử thực tế.
+
+## 9. Tài liệu trong repository
 
 | Tài liệu | Nội dung |
 |---|---|
@@ -145,5 +229,5 @@ Các chức năng quản lý kho, sửa chữa chi tiết, khảo sát hài lòn
 | `docs/database.sql` | Thiết kế cơ sở dữ liệu |
 | `docs/thay-doi-thiet-ke.md` | Ghi nhận thay đổi thiết kế |
 | `docs/ai-disclosure.md` | Công khai việc sử dụng AI |
-| `diagrams/` | Các sơ đồ phân tích và thiết kế |
-
+| `diagrams/` | Sơ đồ phân tích và thiết kế |
+| `anhchungminh/` | Ảnh minh chứng quá trình phát triển và kiểm thử |

@@ -1,4 +1,3 @@
-
 import { request } from "./client";
 
 export const customerApi = {
@@ -10,6 +9,12 @@ export const customerApi = {
     return request("/customers", {
       method: "POST",
       body: JSON.stringify(data),
+    });
+  },
+
+  delete(id) {
+    return request(`/customers/${id}`, {
+      method: "DELETE",
     });
   },
 };

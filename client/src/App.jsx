@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Activity, AlertCircle, ArrowLeft, CheckCircle2, Clock3,
   FilePlus2, LayoutDashboard, LoaderCircle, Menu, MonitorSmartphone,
-  Plus, RefreshCw, Search, ShieldCheck, Ticket, Users, Wrench, X
+    Plus, RefreshCw, Search, ShieldCheck, Ticket, Users, Wrench, X, Trash2
 } from "lucide-react";
 
 import { ticketApi } from "./api/tickets.api";
@@ -365,6 +365,53 @@ async function createTicket(event) {
       setSaving(false);
     }
   }
+  async function handleDeleteCustomer(customer) {
+  const confirmed = window.confirm(
+    `Bạn có chắc muốn ngừng hoạt động khách hàng "${customer.customer_name}" không?`
+  );
+
+  if (!confirmed) return;
+
+  setSaving(true);
+  setNotice("");
+
+  try {
+    await customerApi.delete(customer.customer_id);
+    await loadData();
+
+    setNotice(
+      `Đã ngừng hoạt động khách hàng ${customer.customer_name}.`
+    );
+  } catch (err) {
+    setNotice(err.message || "Không thể xóa khách hàng.");
+  } finally {
+    setSaving(false);
+  }
+}
+
+async function handleDeleteDevice(device) {
+  const confirmed = window.confirm(
+    `Bạn có chắc muốn ngừng hoạt động thiết bị "${device.device_name}" không?`
+  );
+
+  if (!confirmed) return;
+
+  setSaving(true);
+  setNotice("");
+
+  try {
+    await deviceApi.delete(device.device_id);
+    await loadData();
+
+    setNotice(
+      `Đã ngừng hoạt động thiết bị ${device.device_name}.`
+    );
+  } catch (err) {
+    setNotice(err.message || "Không thể xóa thiết bị.");
+  } finally {
+    setSaving(false);
+  }
+}
 function handleLogin(user) {
   setCurrentUser(user);
   setIsAuthenticated(true);
@@ -427,6 +474,21 @@ async function handleLogout() {
           >
             <FilePlus2 size={18} /> Tiếp nhận yêu cầu
           </button>
+        <button
+  className={page === "customers" ? "nav-item active" : "nav-item"}
+  onClick={() => navigate("customers")}
+>
+  <Users size={18} /> Khách hàng
+  <span className="nav-count">{customers.length}</span>
+</button>
+
+<button
+  className={page === "devices" ? "nav-item active" : "nav-item"}
+  onClick={() => navigate("devices")}
+>
+  <MonitorSmartphone size={18} /> Thiết bị
+  <span className="nav-count">{devices.length}</span>
+</button>
         </nav>
 
         <div className="sidebar-bottom">
@@ -851,7 +913,134 @@ async function handleLogout() {
               </DataState>
             </>
           )}
+{page === "customers" && (
+  <>
+    <div className="page-heading">
+      <div>
+        <div className="eyebrow">QUẢN LÝ DỮ LIỆU</div>
+        <h1>Khách hàng</h1>
+        <p>Quản lý thông tin khách hàng trong hệ thống Smart CRM.</p>
+      </div>
+      <button className="button secondary" onClick={loadData}>
+        <RefreshCw size={16} /> Làm mới
+      </button>
+    </div>
 
+    <DataState
+      loading={loading}
+      error={error}
+      empty={customers.length === 0}
+      onRetry={loadData}
+    >
+      <section className="panel">
+        <PanelTitle
+          title="Danh sách khách hàng"
+          subtitle={`${customers.length} khách hàng đang hoạt động`}
+        />
+
+        <div className="table-wrap">
+          <table className="ticket-table">
+            <thead>
+              <tr>
+                <th>MÃ KHÁCH HÀNG</th>
+                <th>HỌ TÊN</th>
+                <th>SỐ ĐIỆN THOẠI</th>
+                <th>EMAIL</th>
+                <th>ĐỊA CHỈ</th>
+                <th>THAO TÁC</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customers.map((customer) => (
+                <tr key={customer.customer_id}>
+                  <td>#{customer.customer_id}</td>
+                  <td>{customer.customer_name}</td>
+                  <td>{customer.phone}</td>
+                  <td>{customer.email || "—"}</td>
+                  <td>{customer.address || "—"}</td>
+                  <td className="action-cell">
+                    <button
+                      className="button danger"
+                      disabled={saving}
+                      onClick={() => handleDeleteCustomer(customer)}
+                    >
+                      <Trash2 size={14} /> Xóa
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </DataState>
+  </>
+)}
+{page === "devices" && (
+  <>
+    <div className="page-heading">
+      <div>
+        <div className="eyebrow">QUẢN LÝ DỮ LIỆU</div>
+        <h1>Thiết bị</h1>
+        <p>Quản lý danh sách thiết bị đã đăng ký bảo hành.</p>
+      </div>
+      <button className="button secondary" onClick={loadData}>
+        <RefreshCw size={16} /> Làm mới
+      </button>
+    </div>
+
+    <DataState
+      loading={loading}
+      error={error}
+      empty={devices.length === 0}
+      onRetry={loadData}
+    >
+      <section className="panel">
+        <PanelTitle
+          title="Danh sách thiết bị"
+          subtitle={`${devices.length} thiết bị đang hoạt động`}
+        />
+
+        <div className="table-wrap">
+          <table className="ticket-table">
+            <thead>
+              <tr>
+                <th>MÃ THIẾT BỊ</th>
+                <th>TÊN THIẾT BỊ</th>
+                <th>MÃ SERIAL</th>
+                <th>MÃ KHÁCH HÀNG</th>
+                <th>NGÀY MUA</th>
+                <th>HẠN BẢO HÀNH</th>
+                <th>THAO TÁC</th>
+              </tr>
+            </thead>
+            <tbody>
+              {devices.map((device) => (
+                <tr key={device.device_id}>
+                  <td>#{device.device_id}</td>
+                  <td>{device.device_name}</td>
+                  <td>{device.serial_number}</td>
+                  <td>#{device.customer_id}</td>
+                  <td>{device.purchase_date || "—"}</td>
+                  <td>{device.warranty_expiry || "—"}</td>
+                  <td className="action-cell">
+                    <button
+                      className="button danger"
+                      disabled={saving}
+                      onClick={() => handleDeleteDevice(device)}
+                    >
+                      <Trash2 size={14} /> Xóa
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </DataState>
+  </>
+)}
           {page === "detail" && (
             <>
               <div className="page-heading">

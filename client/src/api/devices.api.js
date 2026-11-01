@@ -1,4 +1,3 @@
-
 import { request } from "./client";
 
 export const deviceApi = {
@@ -10,6 +9,12 @@ export const deviceApi = {
     return request("/devices", {
       method: "POST",
       body: JSON.stringify(data),
+    });
+  },
+
+  delete(id) {
+    return request(`/devices/${id}`, {
+      method: "DELETE",
     });
   },
 };

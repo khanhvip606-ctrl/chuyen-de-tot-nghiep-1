@@ -1640,3 +1640,52 @@ input:focus {
     padding: 28px 22px;
   }
 }
+/* Nút xóa khách hàng và thiết bị */
+.button.danger {
+  min-height: 32px;
+  padding: 0 10px;
+  color: #ff9aa5;
+  background: #3d222c;
+  border: 1px solid #60303e;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.button.danger:hover:not(:disabled) {
+  color: #fff;
+  background: #a9364c;
+  border-color: #d34b63;
+}
+
+.button.danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-cell {
+  text-align: center;
+}
+.button.danger {
+  min-height: 32px;
+  padding: 0 10px;
+  color: #ff9aa5;
+  background: #3d222c;
+  border: 1px solid #60303e;
+  border-radius: 7px;
+  font-size: 11px;
+}
+
+.button.danger:hover:not(:disabled) {
+  color: #fff;
+  background: #a9364c;
+  border-color: #d34b63;
+}
+
+.button.danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-cell {
+  text-align: center;
+}

@@ -51,7 +51,15 @@ function formatDate(value) {
   });
 }
 
-function DataState({ loading, error, empty, onRetry, children }) {
+function DataState({
+  loading,
+  error,
+  empty,
+  onRetry,
+  children,
+  emptyTitle = "Chưa có dữ liệu",
+  emptyDescription = "Chưa có dữ liệu để hiển thị."
+}) {
   if (loading) {
     return (
       <div className="state-box">
@@ -74,12 +82,12 @@ function DataState({ loading, error, empty, onRetry, children }) {
     );
   }
 
-  if (empty) {
+    if (empty) {
     return (
       <div className="state-box">
         <Ticket size={32} />
-        <h3>Chưa có dữ liệu</h3>
-        <p>Không tìm thấy kết quả phù hợp.</p>
+        <h3>{emptyTitle}</h3>
+        <p>{emptyDescription}</p>
       </div>
     );
   }
@@ -611,11 +619,21 @@ async function handleLogout() {
                     </select>
                   </div>
                   <DataState
-                    loading={false}
-                    error=""
-                    empty={filteredTickets.length === 0}
-                    onRetry={loadData}
-                  >
+  loading={false}
+  error=""
+  empty={filteredTickets.length === 0}
+  emptyTitle={
+    tickets.length === 0
+      ? "Chưa có phiếu bảo hành"
+      : "Không tìm thấy kết quả"
+  }
+  emptyDescription={
+    tickets.length === 0
+      ? "Hiện chưa có phiếu bảo hành nào trong hệ thống."
+      : "Thử thay đổi từ khóa tìm kiếm hoặc trạng thái lọc."
+  }
+  onRetry={loadData}
+>
                     <TicketTable tickets={filteredTickets} onSelect={loadDetail} />
                   </DataState>
                 </section>

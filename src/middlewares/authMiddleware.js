@@ -3,7 +3,7 @@ const authService = require("../services/authService");
 function authMiddleware(req, res, next) {
   const authorization = req.headers.authorization;
 
-  if (!authorization || !authorization.startsWith("Bearer ")) {
+  if (!authorization || !/^Bearer\s/i.test(authorization)) {
     return res.status(401).json({
       success: false,
       message: "Vui lòng đăng nhập để tiếp tục."

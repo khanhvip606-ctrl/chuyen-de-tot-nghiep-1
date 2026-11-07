@@ -26,17 +26,17 @@
 
 
 
-\- \*\*Mã lỗi / Mức độ:\*\* BUG-02 / Major (không đạt tiêu chí nghiệm thu S4).
+\- \*\*Mã lỗi / Mức độ:\*\* BUG-02 / Major (ảnh hưởng tiêu chí nghiệm thu S4).
 
 \- \*\*Người phát hiện:\*\* Giảng viên phản hồi khi đánh giá BT2.
 
 \- \*\*Triệu chứng:\*\* Giao diện chưa phân biệt hệ thống chưa có phiếu bảo hành với tìm kiếm hoặc lọc không có kết quả.
 
-\- \*\*Cách tái hiện:\*\* Mở danh sách phiếu bảo hành, kiểm tra trạng thái chưa có dữ liệu và tìm kiếm bằng từ khóa không tồn tại.
+\- \*\*Cách tái hiện:\*\* Mở danh sách phiếu bảo hành và tìm kiếm bằng từ khóa không tồn tại.
 
 \- \*\*Nguyên nhân gốc:\*\* Giao diện sử dụng thông báo rỗng chung, chưa xét dữ liệu gốc và dữ liệu sau lọc.
 
-\- \*\*Cách sửa:\*\* Cập nhật DataState và danh sách phiếu để hiển thị hai thông báo riêng: “Chưa có phiếu bảo hành” và “Không tìm thấy kết quả”.
+\- \*\*Cách sửa:\*\* Cập nhật DataState để hiển thị “Chưa có phiếu bảo hành” và “Không tìm thấy kết quả”.
 
-\- \*\*Commit và xác minh:\*\* `npm run build` thành công. Chưa hoàn tất kiểm tra hai trạng thái trên giao diện và chưa có commit BUG-02.
+\- \*\*Commit và xác minh:\*\* Commit `e6a8da5`. Build thành công và trạng thái tìm kiếm không có kết quả đã được kiểm tra, có ảnh minh chứng `docs/screenshots/bug02khongcoketqua.png`. Trạng thái hệ thống hoàn toàn chưa có phiếu chưa được xác minh.
 
